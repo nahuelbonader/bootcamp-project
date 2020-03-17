@@ -10,7 +10,7 @@ let res;
 beforeEach(() => {
   sendMock = jest.fn();
   statusMock = jest.fn();
-  res = {status: statusMock, send: sendMock};
+  res = { status: statusMock, send: sendMock };
   statusMock.mockImplementation(() => res);
 });
 
@@ -22,8 +22,8 @@ describe('user Controller', () => {
           password: 'password',
           firstName: 'firstName',
           lastName: 'lastName',
-          userName: 'userName',
-        },
+          userName: 'userName'
+        }
       };
 
       await userController.signUp(req, res);
@@ -35,8 +35,8 @@ describe('user Controller', () => {
           email: 'email@test.com',
           firstName: 'firstName',
           lastName: 'lastName',
-          userName: 'userName',
-        },
+          userName: 'userName'
+        }
       };
 
       await userController.signUp(req, res);
@@ -48,8 +48,8 @@ describe('user Controller', () => {
           email: 'email@test.com',
           password: 'password',
           lastName: 'lastName',
-          userName: 'userName',
-        },
+          userName: 'userName'
+        }
       };
 
       await userController.signUp(req, res);
@@ -61,8 +61,8 @@ describe('user Controller', () => {
           email: 'email@test.com',
           password: 'password',
           firstName: 'firstName',
-          userName: 'userName',
-        },
+          userName: 'userName'
+        }
       };
 
       await userController.signUp(req, res);
@@ -74,8 +74,8 @@ describe('user Controller', () => {
           email: 'email@test.com',
           password: 'password',
           firstName: 'firstName',
-          lastName: 'lastName',
-        },
+          lastName: 'lastName'
+        }
       };
 
       await userController.signUp(req, res);
@@ -88,8 +88,8 @@ describe('user Controller', () => {
           password: 'password',
           firstName: 'firstName',
           lastName: 'lastName',
-          userName: 'userName',
-        },
+          userName: 'userName'
+        }
       };
       const mock = {};
       userService.signUp.mockImplementationOnce(() => mock);
@@ -105,9 +105,9 @@ describe('user Controller', () => {
           email: 1,
           userName: 'userName',
           firstName: 'firstName',
-          lastName: 'lastName',
+          lastName: 'lastName'
         },
-        params: {id: 1},
+        params: { id: 1 }
       };
 
       await userController.update(req, res);
@@ -119,9 +119,9 @@ describe('user Controller', () => {
           email: 'test@mail.com',
           userName: 1,
           firstName: 'firstName',
-          lastName: 'lastName',
+          lastName: 'lastName'
         },
-        params: {id: 1},
+        params: { id: 1 }
       };
 
       await userController.update(req, res);
@@ -133,9 +133,9 @@ describe('user Controller', () => {
           email: 1,
           userName: 'userName',
           firstName: 1,
-          lastName: 'lastName',
+          lastName: 'lastName'
         },
-        params: {id: 1},
+        params: { id: 1 }
       };
 
       await userController.update(req, res);
@@ -147,9 +147,9 @@ describe('user Controller', () => {
           email: 1,
           userName: 'userName',
           firstName: 'firstName',
-          lastName: 1,
+          lastName: 1
         },
-        params: {id: 1},
+        params: { id: 1 }
       };
 
       await userController.update(req, res);
@@ -161,9 +161,9 @@ describe('user Controller', () => {
           email: 'test@mail.com',
           userName: 'userName',
           firstName: 'firstName',
-          lastName: 'lastName',
+          lastName: 'lastName'
         },
-        params: {id: 1},
+        params: { id: 1 }
       };
 
       const mock = {};
@@ -175,7 +175,7 @@ describe('user Controller', () => {
   });
   describe('delete single user', () => {
     it('should succeed with 200 and delete user', async () => {
-      const req = {params: {id: 1}};
+      const req = { params: { id: 1 } };
 
       const mock = {};
       userService.delete.mockImplementationOnce(() => mock);
@@ -187,7 +187,7 @@ describe('user Controller', () => {
   describe('get single user', () => {
     it('should pass with 200 ', async () => {
       const req = {
-        params: {id: '1'},
+        params: { id: '1' }
       };
       const mock = [
         {
@@ -196,8 +196,8 @@ describe('user Controller', () => {
           email: 'email@email.com',
           lastName: 'lastName',
           firstName: 'firstName',
-          createdAt: '2019-09-03T16:27:20.000Z',
-        },
+          createdAt: '2019-09-03T16:27:20.000Z'
+        }
       ];
 
       const result = [
@@ -207,8 +207,8 @@ describe('user Controller', () => {
           email: 'email@email.com',
           lastName: 'lastName',
           firstName: 'firstName',
-          createdAt: '2019-09-03T16:27:20.000Z',
-        },
+          createdAt: '2019-09-03T16:27:20.000Z'
+        }
       ];
 
       userService.get.mockImplementationOnce(() => mock);
@@ -216,6 +216,23 @@ describe('user Controller', () => {
       await userController.get(req, res);
       expect(statusMock).toBeCalledWith(200);
       expect(sendMock).toBeCalledWith(expect.objectContaining(result));
+    });
+
+    it('should pass with 404 user not found ', async () => {
+      const req = {
+        params: { id: '1' }
+      };
+
+      userService.get.mockImplementationOnce(() => {
+        throw {
+          status: 404,
+          error: 'user_not_found',
+          msg: 'Usuario no encontrado'
+        };
+      });
+
+      await userController.get(req, res);
+      expect(statusMock).toBeCalledWith(404);
     });
   });
 });
