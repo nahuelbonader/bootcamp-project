@@ -11,11 +11,6 @@ app.mainDBRepository = mainDBRepository;
 // Enable cors for public access
 app.use(cors());
 
-// Healthcheck
-app.get('/health', (req, res) => {
-  res.status(200).end();
-});
-
 // JSON parsing
 app.use(bodyParser.json());
 

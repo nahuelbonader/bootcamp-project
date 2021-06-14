@@ -1,32 +1,28 @@
 # README
 
-This is the project for plataforma 5 bootcamp workshops.
+Workshop number 1 for Plataforma 5 advanced bootcamp: Git, testing, REST APIs
 
 ### What is this repository for?
 
-- To use it to implement the excercises propose during the classes.
+- To be used to implement the excercises proposed during the classes.
 
-### How do i started locally?
+### How do I start it locally?
 
-- This repo is used by docker and docker-compose, even if that will be seen in a detail way in another module the easiest way to start everything to test and implement is:
+- This repo is used by docker and docker-compose. Even if these topics will be studied in detail in another module, the easiest way to get everything running to test and implement is:
 
-To start mysqsl and test schema
+To start the mysql and test schema
 
 ```bash
 docker-compose up -d mysql
 ```
 
-To start api project
+To start the API project
 
 ```bash
 docker-compose up local
 ```
 
-### How do i run and implement tests?
-
-The tests structure is already implemented even if some tests are not.
-
-Unit tests are being implemented along the sources, in a complement file called _.controller.test.js or _.service.test.js.
+### How do I run and implement tests?
 
 To run unit tests
 
