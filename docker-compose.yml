@@ -51,7 +51,7 @@ services:
     image: mysql:5.7
     container_name: plataforma5-database_mysql
     ports:
-      - 3306:3306
+      - 3307:3306
     volumes:
       - ./db/schema-test.sql:/docker-entrypoint-initdb.d/schema-test.sql
     environment:

@@ -20,6 +20,15 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS Product (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255),
+  brand VARCHAR(255),
+  price DECIMAL(5,2),
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
+
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
 INSERT INTO `User` (id,userName,email,passwordEncrypted,firstName,lastName)
