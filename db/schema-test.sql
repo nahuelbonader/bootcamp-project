@@ -13,12 +13,18 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Table `User`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `User` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `userName` VARCHAR(255) NULL,
-  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`))
+CREATE TABLE IF NOT EXISTS Users (
+  id INT NOT NULL AUTO_INCREMENT,
+  userName VARCHAR(255) NULL,
+  firstName VARCHAR(255) NULL,
+  lastName VARCHAR(255) NULL,
+  email VARCHAR(255) NOT NULL,
+  passwordEncrypted VARCHAR(255) NOT NULL,
+  role VARCHAR(255) NULL,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id))
 ENGINE = InnoDB;
+
 
 CREATE TABLE IF NOT EXISTS Product (
   id INT NOT NULL AUTO_INCREMENT,
@@ -29,11 +35,12 @@ CREATE TABLE IF NOT EXISTS Product (
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
-LOCK TABLES `User` WRITE;
-/*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` (id,userName,email,passwordEncrypted,firstName,lastName)
+LOCK TABLES Users WRITE;
+/*!40000 ALTER TABLE Users DISABLE KEYS */;
+INSERT INTO Users (id,userName,email,passwordEncrypted,firstName,lastName,role)
 values
-(1,'userName');
+(1,'userName', 'user@mail.com', '$123456', 'Juan', 'Sanchez', 'admin'),
+(2,'comprador', 'comprador@mail.com', '$Comprador', 'Juan', 'Comprador', 'comprador');
 
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
