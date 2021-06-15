@@ -1,16 +1,14 @@
 const cartDao = require('../dao/cartDao.dao');
 
 class userService {
-    static async create(email, password, userName, firstName, lastName) {
-        const result = await cartDao.exists(email, 'email');
+    static async create(userId, status) {
+        const result = await cartDao.exists(userId, 'userId');
         const exists = result[0].exists;
-
+        //VALIDAR SI YA POSEE UN CARRO ACTIVO
         if (exists > 0)
-            throw { status: 409, error: 'email_in_use', msg: 'Email en uso' };
-
-        const user = [email, password, userName, firstName, lastName];
-
-        return cartDao.signUp(user);
+            throw { errorStack: 'cart_already_created' };
+        const cart = [userId, status];
+        return cartDao.create(cart);
     }
 
     static async update(id, email, userName, firstName, lastName) {
@@ -18,9 +16,7 @@ class userService {
         console.log(exists)
         if (exists[0].exists === 0)
             throw {
-                status: 404,
-                error: 'user_not_found',
-                msg: 'Usuario no encontrado'
+                errorStack: 'user_not_found',
             };
 
         return cartDao.update(id, email, userName, firstName, lastName);
@@ -30,9 +26,7 @@ class userService {
         const exists = await cartDao.exists(id, 'id');
         if (exists[0].exists === 0)
             throw {
-                status: 404,
-                error: 'user_not_found',
-                msg: 'Usuario no encontrado'
+                errorStack: 'cart_not_found',
             };
 
         return cartDao.delete(id);
@@ -42,9 +36,7 @@ class userService {
         const exists = await cartDao.exists(id, 'id');
         if (exists[0].exists === 0)
             throw {
-                status: 404,
-                error: 'user_not_found',
-                msg: 'Usuario no encontrado'
+                errorStack: 'cart_not_found',
             };
 
         return cartDao.get(id);
