@@ -20,11 +20,26 @@ CREATE TABLE IF NOT EXISTS `User` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `Product` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255),
+  `brand` VARCHAR(255),
+  `price` DECIMAL(5,2),
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` (id,userName,email,passwordEncrypted,firstName,lastName)
+INSERT INTO `User` (id,userName)
 values
 (1,'userName');
+
+LOCK TABLES `Product` WRITE;
+/*!40000 ALTER TABLE `Product` DISABLE KEYS */;
+INSERT INTO `Product` (id,name,brand,price)
+values
+(1,'polenta', 'morixe', '50.000');
 
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
