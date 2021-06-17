@@ -45,6 +45,48 @@ values
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+-- -----------------------------------------------------
+-- Table `Cart`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Cart` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userId` INT NOT NULL,
+  `status` VARCHAR(255) NOT NULL DEFAULT `cerrado`,
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`userId`) REFERENCES User(`id`)))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `Cart`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `CartHasProducts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `cartId` INT NOT NULL,
+  `productId` INT NOT NULL,
+  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`cartId`) REFERENCES Cart(`id`),
+  FOREIGN KEY (`productId`) REFERENCES Product(`id`)))
+ENGINE = InnoDB;
+
+
+LOCK TABLES `User` WRITE;
+/*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` (id,userName)
+values
+(1,'userName');
+
+LOCK TABLES `Product` WRITE;
+/*!40000 ALTER TABLE `Product` DISABLE KEYS */;
+INSERT INTO `Product` (id,name,brand,price)
+values
+(1,'polenta', 'morixe', '50.000');
+
+/*!40000 ALTER TABLE `User` ENABLE KEYS */;
+UNLOCK TABLES;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
