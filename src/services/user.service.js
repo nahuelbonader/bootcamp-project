@@ -1,8 +1,8 @@
 const userDao = require("../daos/user.dao");
 
 class userService {
-  static async create({ username, firstName, lastName, email, password }) {
-    const user = [username, firstName, lastName, email, password];
+  static async create({ username, firstName, lastName, email, password, role }) {
+    const user = [username, firstName, lastName, email, password, role];
     return userDao.create(user);
   }
 

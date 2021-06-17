@@ -2,8 +2,8 @@ const { query } = require("../repositories/main.repository");
 
 class userDao {
   static create(user) {
-    const insertUserQuery = `INSERT INTO User (username, firstName, lastName, email, passwordEncrypted) 
-        values (?, ?, ?, ?, ?)`;
+    const insertUserQuery = `INSERT INTO User (username, firstName, lastName, email, passwordEncrypted, role) 
+        values (?, ?, ?, ?, ?, ?)`;
     return query(insertUserQuery, user);
   }
 
@@ -13,7 +13,7 @@ class userDao {
   }
 
   static get(id) {
-    const sql = `SELECT username, firstName, lastName, email, createdAt FROM User WHERE id = ?`;
+    const sql = `SELECT username, firstName, lastName, email, createdAt, role FROM User WHERE id = ?`;
     return query(sql, id);
   }
 
