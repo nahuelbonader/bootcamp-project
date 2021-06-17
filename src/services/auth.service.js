@@ -6,7 +6,7 @@ class authService {
     static async login(userName, password) {
         /**
          * 
-         * validaciones here
+         * validations here
          */
 
         // JWT 
