@@ -74,9 +74,15 @@ ENGINE = InnoDB;
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` (id,userName,email,passwordEncrypted,firstName,lastName)
+INSERT INTO `User` (id,userName)
 values
 (1,'userName');
+
+LOCK TABLES `Product` WRITE;
+/*!40000 ALTER TABLE `Product` DISABLE KEYS */;
+INSERT INTO `Product` (id,name,brand,price)
+values
+(1,'polenta', 'morixe', '50.000');
 
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
