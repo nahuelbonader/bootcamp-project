@@ -1,8 +1,15 @@
 const userDao = require("../daos/user.dao");
 
 class userService {
-  static async create({ username, firstName, lastName, email, password }) {
-    const user = [username, firstName, lastName, email, password];
+  static async create({
+    username,
+    firstName,
+    lastName,
+    email,
+    password,
+    role,
+  }) {
+    const user = [username, firstName, lastName, email, password, role];
     return userDao.create(user);
   }
 
@@ -17,7 +24,14 @@ class userService {
     return userDao.get(id);
   }
 
-  static async update(user) {
+  static async update({
+    id,
+    username,
+    firstName,
+    lastName,
+    email,
+    role,
+  }) {
     const exists = await userDao.exists(id, "id");
     if (exists[0].exists === 0)
       throw {
@@ -25,6 +39,7 @@ class userService {
         msg: "Usuario no encontrado",
       };
 
+    const user = [id, username, firstName, lastName, email, role];
     return userDao.update(user);
   }
 

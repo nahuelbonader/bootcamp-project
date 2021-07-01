@@ -2,13 +2,14 @@ const userService = require("../services/user.service");
 
 class userController {
   static async create(req, res) {
-    const { username, firstName, lastName, email, password } = req.body;
+    const { username, firstName, lastName, email, password, role } = req.body;
     if (
       (email && typeof email !== "string") ||
       (password && typeof password !== "string") ||
       (username && typeof username !== "string") ||
       (firstName && typeof firstName !== "string") ||
-      (lastName && typeof lastName !== "string")
+      (lastName && typeof lastName !== "string") ||
+      (role && typeof role !== "string")
     ) {
       return res.status(400).send("Input incorrecto");
     }
