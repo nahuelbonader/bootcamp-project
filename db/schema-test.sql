@@ -14,10 +14,15 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Table `User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `User` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `userName` VARCHAR(255) NULL,
-  `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`))
+  id INT NOT NULL AUTO_INCREMENT,
+  userName VARCHAR(255) NULL,
+  firstName VARCHAR(255) NULL,
+  lastName VARCHAR(255) NULL,
+  email VARCHAR(255) NOT NULL,
+  passwordEncrypted VARCHAR(255) NOT NULL,
+  role VARCHAR(255) NULL,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Product` (
@@ -31,9 +36,10 @@ ENGINE = InnoDB;
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` (id,userName)
+INSERT INTO Users (id,userName,email,passwordEncrypted,firstName,lastName,role)
 values
-(1,'userName');
+(1,'userName', 'user@mail.com', '$123456', 'Juan', 'Sanchez', 'admin'),
+(2,'comprador', 'comprador@mail.com', '$Comprador', 'Juan', 'Comprador', 'comprador');
 
 LOCK TABLES `Product` WRITE;
 /*!40000 ALTER TABLE `Product` DISABLE KEYS */;
@@ -42,6 +48,7 @@ values
 (1,'polenta', 'morixe', '50.000');
 
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
+/*!40000 ALTER TABLE `Product` ENABLE KEYS */;
 UNLOCK TABLES;
 
 SET SQL_MODE=@OLD_SQL_MODE;
