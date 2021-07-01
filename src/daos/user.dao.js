@@ -61,6 +61,10 @@ class userDao {
     queryParams.push(id);
     return query(sql, queryParams);
   }
+  static getUserForAuthentication(email) {
+    const sql = `SELECT role, id FROM User WHERE email = ?`;
+    return query(sql, email);
+  }
 }
 
 module.exports = userDao;

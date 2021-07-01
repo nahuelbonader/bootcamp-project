@@ -1,0 +1,51 @@
+[
+    {
+        "group": "admin",
+        "permissions": [
+            {
+                "resource": "users/*",
+                "methods": [
+                    "POST",
+                    "GET",
+                    "DELETE"
+                ],
+                "action": "allow"
+            },
+            {
+                "resource": "productos/*",
+                "methods": [
+                    "POST",
+                    "GET",
+                    "PUT",
+                    "DELETE"
+                ],
+                "action": "allow"
+            }
+        ]
+    },
+    {
+        "group": "comprador",
+        "permissions": [
+            {
+                "resource": "*",
+                "methods": [
+                    "POST",
+                    "GET",
+                    "PUT",
+                    "DELETE"
+                ],
+                "action": "allow"
+            },
+            {
+                "resource": "carros/*",
+                "methods": [
+                    "POST",
+                    "GET",
+                    "PUT",
+                    "DELETE"
+                ],
+                "action": "allow"
+            }
+        ]
+    }
+]
