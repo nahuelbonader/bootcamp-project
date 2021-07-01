@@ -60,16 +60,20 @@ class userController {
   }
 
   static async delete(req, res) {
+    console.log(req.decoded)
+    const { tokenUserId } = req.decoded
     const { id } = req.params;
     if (id && typeof id !== "string") {
       return res.status(400).send("ID de usuario inválido");
     }
     try {
-      const userFound = await userService.delete(id);
-      if (userFound.error) {
-        return res.status(404).send(userFound.msg);
+      if (tokenUserId == id) {
+        const userFound = await userService.delete(id);
+        if (userFound.error) {
+          return res.status(404).send(userFound.msg);
+        }
+        return res.status(204).send("Operación exitosa");
       }
-      return res.status(204).send("Operación exitosa");
     } catch (error) {
       const status = error.status;
       if (status === undefined) return res.status(500).send();

@@ -38,6 +38,15 @@ class userService {
 
     return userDao.delete(id);
   }
+
+  static async isUserRegister(email) {
+    const exists = await userDao.exists(email, "email");
+    if (exists[0].exists === 0)
+      throw {
+        errorStack: "user_not_found",
+      }
+    return true
+  }
 }
 
 module.exports = userService;
