@@ -22,7 +22,7 @@ class userDao {
     return query(sql, id);
   }
 
-  static update(id, username, firstName, lastName, email) {
+  static update(id, username, firstName, lastName, email, role) {
     let filters = "";
     const queryParams = [];
     let fields = 0;
@@ -54,6 +54,14 @@ class userDao {
 
       filters += `lastName = ?`;
       queryParams.push(lastName);
+
+      fields++;
+    }
+    if (role) {
+      if (fields > 0) filters += `,`;
+
+      filters += `role = ?`;
+      queryParams.push(role);
 
       fields++;
     }
