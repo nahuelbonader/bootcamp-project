@@ -5,17 +5,17 @@ const SECRET_KEY = 'secretkey'
 class authService {
     static async login(email) {
         const user = await userDao.getUserForAuthentication(email)
+
         const payload = {
             check: true,
-            role: user.role,
-            id: user.id
+            role: user[0].role,
+            id: user[0].id,
         };
 
         const token = jwt.sign(payload, SECRET_KEY, {
             expiresIn: 60 * 60
         });
 
-        console.log(token)
         try {
             return {
                 msg: 'Login successfully',

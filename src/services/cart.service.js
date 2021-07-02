@@ -1,4 +1,4 @@
-const cartDao = require('../dao/cartDao.dao');
+const cartDao = require('../dao/cart.dao');
 
 class userService {
     static async create(userId, status) {
@@ -13,7 +13,6 @@ class userService {
 
     static async update(id, email, userName, firstName, lastName) {
         const exists = await cartDao.exists(id, 'id');
-        console.log(exists)
         if (exists[0].exists === 0)
             throw {
                 errorStack: 'user_not_found',
