@@ -5,6 +5,9 @@ x-common-variables: &common-variables
   DB_MAIN_USER: root
   DB_MAIN_PASS: root
   DB_MAIN_NAME: main_db
+  AWS_ACCESS_KEY_ID: anykey
+  AWS_SECRET_ACCESS_KEY: anysecret
+  AWS_REGION: us-east-2
 services:
   local:
     build:
@@ -51,7 +54,7 @@ services:
     image: mysql:5.7
     container_name: plataforma5-database_mysql
     ports:
-      - 3307:3306
+      - 3306:3306
     volumes:
       - ./db/schema-test.sql:/docker-entrypoint-initdb.d/schema-test.sql
     environment:

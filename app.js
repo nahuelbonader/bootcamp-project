@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const router = require("./src/routes");
 const app = express();
@@ -12,11 +11,11 @@ app.mainDBRepository = mainDBRepository;
 app.use(cors());
 
 // JSON parsing
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Other request types parsing
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     extended: true,
   })
 );

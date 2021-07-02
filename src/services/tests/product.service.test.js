@@ -21,5 +21,21 @@ describe("Product Service", () => {
         expect(error).toEqual(resultError);
       }
     });
+    it("get product should fail with error product_not_found", async () => {
+      const mock = [{ exists: 1 }];
+      const resultError = {
+        error: "product_not_found",
+        msg: "Producto no encontrado",
+      };
+      productDao.exists.mockImplementationOnce(() => mock);
+
+      expect.assertions(1);
+
+      try {
+        const res = await productService.getOne(1);
+        expect(res).toEqual(resultError);
+      } catch (error) {
+      }
+    });
   });
 });
