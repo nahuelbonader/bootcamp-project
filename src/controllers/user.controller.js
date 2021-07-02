@@ -60,7 +60,6 @@ class userController {
   }
 
   static async delete(req, res) {
-    console.log(req.decoded)
     const { tokenUserId } = req.decoded
     const { id } = req.params;
     if (id && typeof id !== "string") {

@@ -27,7 +27,7 @@
         "group": "comprador",
         "permissions": [
             {
-                "resource": "*",
+                "resource": "users/*",
                 "methods": [
                     "POST",
                     "GET",
@@ -45,6 +45,16 @@
                     "DELETE"
                 ],
                 "action": "allow"
+            },
+            {
+                "resource": "products/*",
+                "methods": [
+                    "DELETE",
+                    "PUT",
+                    "POST",
+                    "GET"
+                ],
+                "action": "deny"
             }
         ]
     }
